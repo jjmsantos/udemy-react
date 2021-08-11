@@ -1,62 +1,45 @@
 import React, { useState } from "react";
+
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-	//METHOD 1:
 	const [enteredTitle, setEnteredTitle] = useState("");
 	const [enteredAmount, setEnteredAmount] = useState("");
 	const [enteredDate, setEnteredDate] = useState("");
+	// const [userInput, setUserInput] = useState({
+	//   enteredTitle: '',
+	//   enteredAmount: '',
+	//   enteredDate: '',
+	// });
 
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
+		// setUserInput({
+		//   ...userInput,
+		//   enteredTitle: event.target.value,
+		// });
+		// setUserInput((prevState) => {
+		//   return { ...prevState, enteredTitle: event.target.value };
+		// });
 	};
 
 	const amountChangeHandler = (event) => {
 		setEnteredAmount(event.target.value);
+		// setUserInput({
+		//   ...userInput,
+		//   enteredAmount: event.target.value,
+		// });
 	};
 
 	const dateChangeHandler = (event) => {
 		setEnteredDate(event.target.value);
+		// setUserInput({
+		//   ...userInput,
+		//   enteredDate: event.target.value,
+		// });
 	};
 
-	/* METHOD 2: */
-
-	// const [userInput, setUserInput] = useState({
-	// 	enteredTitle: "",
-	// 	enteredAmount: "",
-	// 	enteredDate: "",
-	// });
-
-	// const titleChangeHandler = (event) => {
-	// 			setUserInput({
-	// 		...userInput,
-	// 		enteredTitle: event.target.value,
-	// 	});
-	// 	setUserInput((prevState) => {
-	// 		return { ...prevState, enteredTitle: event.target.value };
-	// 	});
-	// };
-	// const amountChangeHandler = (event) => {
-	// 			setUserInput({
-	// 		...userInput,
-	// 		enteredAmount: event.target.value,
-	// 	});
-	// 	setUserInput((prevState) => {
-	// 		return { ...prevState, enteredAmount: event.target.value };
-	// 	});
-	// };
-	// const dateChangeHandler = (event) => {
-	// 			setUserInput({
-	// 		...userInput,
-	// 		enteredDate: event.target.value,
-	// 	});
-	// 	setUserInput((prevState) => {
-	// 		return { ...prevState, enteredDate: event.target.value };
-	// 	});
-	// };
-	//END OF METHOD 2
-
-	const SubmitHandler = (event) => {
+	const submitHandler = (event) => {
 		event.preventDefault();
 
 		const expenseData = {
@@ -64,7 +47,7 @@ const ExpenseForm = (props) => {
 			amount: enteredAmount,
 			date: new Date(enteredDate),
 		};
-		//console.log(expenseData);
+
 		props.onSaveExpenseData(expenseData);
 		setEnteredTitle("");
 		setEnteredAmount("");
@@ -72,7 +55,7 @@ const ExpenseForm = (props) => {
 	};
 
 	return (
-		<form onSubmit={SubmitHandler}>
+		<form onSubmit={submitHandler}>
 			<div className="new-expense__controls">
 				<div className="new-expense__control">
 					<label>Title</label>
